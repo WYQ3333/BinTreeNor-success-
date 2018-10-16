@@ -83,31 +83,6 @@ void Postorder(pBinTreeNor pRoot)//递归实现后序遍历
 
 /////////////////////////////////////////////////////////////////////////////////
 ////非递归实现二叉树的遍历
-void PreorderNor(pBinTreeNor pRoot)//非递归实现先序遍历
-{
-	if (pRoot == NULL)
-	{
-		return;//空树
-	}
-	Stack s;
-	StackInit(&s);//初始化栈
-	Pushstack(&s, pRoot);
-	while (!IsEmptyStack(&s))
-	{
-		pBinTreeNor cur = TopStack(&s);
-		printf("%c", cur->data);
-		PopStack(&s);
-		if (cur->right)
-		{
-			Pushstack(&s, cur->right);
-		}
-		if (cur->left)
-		{
-			Pushstack(&s, cur->left);
-		}
-	}
-}
-//非递归实现二叉树遍历的另一种方法
 //void PreorderNor(pBinTreeNor pRoot)//非递归实现先序遍历
 //{
 //	if (pRoot == NULL)
@@ -120,18 +95,43 @@ void PreorderNor(pBinTreeNor pRoot)//非递归实现先序遍历
 //	while (!IsEmptyStack(&s))
 //	{
 //		pBinTreeNor cur = TopStack(&s);
+//		printf("%c", cur->data);
 //		PopStack(&s);
-//		while (cur)
+//		if (cur->right)
 //		{
-//			printf("%c", cur->data);
-//			if (cur->right)
-//			{
-//				Pushstack(&s, cur->right);
-//			}
-//			cur = cur->left;
+//			Pushstack(&s, cur->right);
+//		}
+//		if (cur->left)
+//		{
+//			Pushstack(&s, cur->left);
 //		}
 //	}
 //}
+//非递归实现二叉树遍历的另一种方法
+void PreorderNor(pBinTreeNor pRoot)//非递归实现先序遍历
+{
+	if (pRoot == NULL)
+	{
+		return;//空树
+	}
+	Stack s;
+	StackInit(&s);//初始化栈
+	Pushstack(&s, pRoot);
+	while (!IsEmptyStack(&s))
+	{
+		pBinTreeNor cur = TopStack(&s);
+		PopStack(&s);
+		while (cur)
+		{
+			printf("%c", cur->data);
+			if (cur->right)
+			{
+				Pushstack(&s, cur->right);
+			}
+			cur = cur->left;
+		}
+	}
+}
 
 void InorderNor(pBinTreeNor pRoot)//非递归实现中序遍历
 {
